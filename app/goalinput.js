@@ -1,28 +1,46 @@
-import { Text, TextInput, View, TouchableOpacity } from "react-native";
-import {  useState } from "react";
+import { Text, TextInput, View, TouchableOpacity, Modal, Image } from "react-native";
+import { useState } from "react";
 
 
-export default function Goalinput(props){
-     const [input, setinput] = useState("");
+export default function Goalinput(props) {
+  const [input, setinput] = useState("");
 
-     function addgoals(){
-        props.onaddgoal(input);
-        setinput("");
-     }
-    
-    return(
-        <View className="flex-2 flex-row mb-10  justify-center item-center"
-      >
-        <TextInput className='w-[70%] h-25 border-2  border-gray-500 rounded-r-none rounded-lg mr-1 pr-8 pl-5  font-bold-700 text-lg '
+  function addgoals() {
+    props.onaddgoal(input);
+    setinput("");
+  }
+
+  return (
+    <Modal visible={props.visible} animationType="fade">
+      <View className=" flex-1   justify-center items-center bg-violet-400" >
+        <Image className="w-[100] h-[100] m-10" source={require("../assets/images/Goal.png")} />
+        <TextInput
+          className='w-[90%] h-[55px] border-2 border-white rounded-lg mr-1 pr-8 pl-5 font-bold  text-xl text-white-200 '
           placeholder="type something..."
-          onChangeText={setinput} value={input} />
+          placeholderTextColor="white"
+          onChangeText={setinput} value={input}
+          style={{ color: 'white' }}
+        />
 
-        <TouchableOpacity className="border-2 bg-blue-700 border-gray-500 w-[20%] rounded-r-lg justify-center items-center"
-          onPress={addgoals}>
-          <Text className="text-xl text-white">Add</Text>
-        </TouchableOpacity>
+        <View className="flex-row mt-4">
+          <TouchableOpacity
+            className=" mr-16  bg-violet-600  w-[25%] h-[45px] rounded-lg justify-center items-center"
+            onPress={addgoals}>
+            <Text className="text-xl text-white">Add</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            className=" bg-pink-600  w-[25%] h-[45px] rounded-lg justify-center items-center"
+            onPress={props.close}>
+            <Text className="text-xl text-white">CLOSE</Text>
+          </TouchableOpacity>
+        </View>
+
 
       </View >
-    )
+    </Modal>
+
+
+  )
 
 }
