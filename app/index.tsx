@@ -1,5 +1,5 @@
 import { SetStateAction, useState } from "react";
-import { Button, Text, TextInput, View ,StyleSheet} from "react-native";
+import { Button, Text, TextInput, View ,StyleSheet, TouchableOpacity} from "react-native";
 import "../global.css";
 
 export default function Index() {
@@ -7,14 +7,19 @@ export default function Index() {
 
  function HandleInput(){
   console.log(input);
+  setinput("");
   
  }
 
   return (
-    <View className=" p-10 flex-1">
-      <View className="flex-row justify-center">
-        <TextInput  className='border-2 w-70 border-fill' placeholder="type something..." onChangeText={setinput}/>
-        <Button title="add" onPress={HandleInput}/>
+    <View className=" p-5">
+      <View className="flex-row justify-center item-center">
+        <TextInput  className='w-[70%] border-2 border-gray-500 rounded-r-none rounded-full  mr-1 pl-5 font-bold-700 ' placeholder="type something..." onChangeText={setinput} value={input}/>
+        
+        <TouchableOpacity className="border-2 bg-blue-400 border-gray-500 w-[20%] rounded-r-full justify-center items-center"
+         onPress={HandleInput}>
+          <Text className="text-xl">add</Text>   
+        </TouchableOpacity>
        
         </View>
         
@@ -28,15 +33,12 @@ export default function Index() {
 
 }
 const styles=StyleSheet.create({
-  container:{
-    flex:1,
-  },
-  TextInput:{
-    marginTop:50,
-    borderColor:'black',
-    borderRadius:10,
-    borderWidth: 1,
-
+  Button:{
+    justifyContent:'center',
+    alignContent:"center",
+    width:50,
+  
+  
   }
 }
 )
